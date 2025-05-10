@@ -7,11 +7,11 @@ arch=('x86_64')
 url="http://gcc.gnu.org"
 license=('GPL' 'LGPL' 'FDL' 'custom')
 groups=('i386-mingw32crt')
-depends=('zlib' 'libmpc' 'i386-mingw32crt-binutils')
+depends=('i386-mingw32crt-binutils')
 conflicts=('i386-mingwcrt-gcc')
 options=('staticlibs' '!emptydirs')
 source=(gcc-$pkgver.tar.xz
-       "http://isl.gforge.inria.fr/isl-${_islver}.tar.xz")
+       "https://libisl.sourceforge.io//isl-${_islver}.tar.xz")
 sha512sums=('42ae38928bd2e8183af445da34220964eb690b675b1892bbeb7cd5bb62be499011ec9a93397dba5e2fb681afadfc6f2767d03b9035b44ba9be807187ae6dc65e'
 	'da4e7cbd5045d074581d4e1c212acb074a8b2345a96515151b0543cbe2601db6ac2bbd93f9ad6643e98f845b68f438f3882c05b8b90969ae542802a3c78fea20')
 
@@ -42,7 +42,7 @@ build() {
         --disable-multilib --enable-checking=release \
         --disable-sjlj-exceptions --with-dwarf2 \
 	--enable-libgomp=no --disable-tls
-    make all-gcc
+    make all-gcc -j$(nproc)
   done
 }
 

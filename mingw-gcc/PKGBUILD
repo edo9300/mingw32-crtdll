@@ -8,11 +8,9 @@ arch=('x86_64' 'aarch64')
 url="https://gcc.gnu.org"
 license=('GPL' 'LGPL' 'FDL' 'custom')
 groups=('i386-mingw32crt')
-depends=('zlib' 'libmpc' 'mingw-w64-crt' 'mingw-w64-binutils' 'mingw-w64-headers')
-makedepends=("gcc-ada>=${pkgver:0:2}")
 options=('!strip' 'staticlibs' '!emptydirs' '!buildflags')
 source=(gcc-$pkgver.tar.xz
-       "http://isl.gforge.inria.fr/isl-${_islver}.tar.xz"
+       "https://libisl.sourceforge.io/isl-${_islver}.tar.xz"
        https://raw.githubusercontent.com/msys2/MINGW-packages/master/mingw-w64-gcc/0020-libgomp-Don-t-hard-code-MS-printf-attributes.patch
        "nowinxp1.patch"
        "nowinxp2.patch"
@@ -105,7 +103,7 @@ build() {
 	--disable-nls --enable-tls=no --disable-tls \
 	--enable-libssp=no --disable-largefile \
 	--enable-wchar_t=no
-    make
+    make -j$(nproc)
   done
 }
 

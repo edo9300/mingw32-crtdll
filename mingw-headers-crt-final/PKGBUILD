@@ -40,13 +40,13 @@ build() {
 	patch -p0 < ../makefile-fix.patch
 	mkdir -p build
 	cd build
-	../configure --prefix=/usr/${target} --target="$target" --enable-stage-2=yes
+	../configure --prefix=/usr/${target} --target="$target" --enable-stage-2=yes --host=host
 	make -j1 # Must be -j1 because _mingw.h needs to get generated first.
 
 	cd "$srcdir"/w32api-"$pkgver"/
 	mkdir -p build
 	cd build
-	../configure --prefix=/usr/${target} --target="$target"
+	../configure --prefix=/usr/${target} --target="$target" --host=host
 	make -j1
 }
 
