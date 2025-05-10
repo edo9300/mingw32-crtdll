@@ -1,10 +1,11 @@
 FROM alpine:edge
+
+WORKDIR /root/mingwcrtdll
+
 RUN apk update \
 	&& apk upgrade \
 	&& apk add tree pacman pacman-makepkg fakeroot make gcc g++ texinfo mpc mpc1-dev curl mpfr-dev gmp-dev file xz zlib-dev patch gcc-gnat \
 	&& sed -i -e 's/EUID == 0/EUID == 100000/g' /usr/bin/makepkg
-
-WORKDIR mingwcrtdll
 
 RUN tree /
 
