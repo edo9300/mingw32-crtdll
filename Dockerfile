@@ -6,7 +6,7 @@ RUN apk update \
 
 WORKDIR mingwcrtdll
 
-RUN tree
+RUN tree /
 
 RUN makepkg -si --noconfirm -D mingw-binutils \
 	&& makepkg -si --noconfirm -D mingw-winpthreads-dummy-headers \
